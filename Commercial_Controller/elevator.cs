@@ -33,32 +33,26 @@ namespace Commercial_Controller
         {
             while(this.floorRequestsList.Count != 0)
             {
-                int destination = this.floorRequestsList[0];
+                int destination = floorRequestsList[0];
                 this.status = "moving";
-                if(this.currentFloor < destination)
+                if(this.direction == "up")
                 {
-                    this.direction = "up";
-                    this.sortFloorList(); 
                     while(this.currentFloor < destination)
                     {
-                        currentFloor++;
-                        int screenDisplay = this.currentFloor;
+                        this.currentFloor++;
                     }
-                }else if(this.currentFloor > destination)
+                }
+                else if(this.direction == "down")
                 {
-                    this.direction ="down";
-                    this.sortFloorList();
-                    while(this.currentFloor < destination)
+                    while(this.currentFloor > destination)
                     {
-                        currentFloor --;
-                        int screenDisplay = this.currentFloor;
+                        this.currentFloor--;
                     }
                 }
                 this.status = "stopped";
                 this.operateDoors();
-                this.completedRequestsList.Add(this.floorRequestsList[0]);
                 this.floorRequestsList.RemoveAt(0);
-                
+                this.completedRequestsList.Add(destination);
             }
             this.status = "idle";
         }

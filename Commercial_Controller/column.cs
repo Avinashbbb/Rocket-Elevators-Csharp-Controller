@@ -12,6 +12,7 @@ namespace Commercial_Controller
         public List<Elevator> elevatorsList;
         public List<CallButton> callButtonsList;
         public List<int> servedFloorsList;
+        private int elevatorID;
         public Column(int _ID,int _amountOfFloors,  int _amountOfElevators, List<int> _servedFloors, bool _isBasement)
         {
             this.ID = _ID;
@@ -54,9 +55,9 @@ namespace Commercial_Controller
         {
             for(int i = 0; i < _amountOfElevators; i++)
             {
-                Elevator elevator = new Elevator(Global.elevatorID,"idle",_amountOfFloors,1);
+                Elevator elevator = new Elevator(this.elevatorID,"idle",_amountOfFloors,1);
                 this.elevatorsList.Add(elevator);
-                Global.elevatorID ++;
+                this.elevatorID ++;
             }
         }
 

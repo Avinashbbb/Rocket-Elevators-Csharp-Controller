@@ -11,6 +11,7 @@ namespace Commercial_Controller
         public string status = "online";
         public List<Column>columnsList;
         public List<FloorRequestButton>floorRequestsButtonsList;
+        private int columnID = 1;
 
         public Battery(int _ID, int _amountOfColumns, int _amountOfFloors, int _amountOfBasements, int _amountOfElevatorPerColumn)
         {   
@@ -40,9 +41,9 @@ namespace Commercial_Controller
                     servedFloors.Add(floor);
                     floor --;
                 }
-                Column column = new Column(Global.columnID,_amountOfFloors,_amountOfElevatorPerColumn,servedFloors,true);//made some modifications to this
+                Column column = new Column(this.columnID,_amountOfFloors,_amountOfElevatorPerColumn,servedFloors,true);//made some modifications to this
                 this.columnsList.Add(column);
-                Global.columnID ++;
+                this.columnID ++;
         }
 
         public void createColumns(int _amountOfColumns,int _amountOfFloors,int _amountOfElevatorPerColumn)
@@ -61,9 +62,9 @@ namespace Commercial_Controller
                     }
                 }
 
-                Column column = new Column(Global.columnID,_amountOfFloors,_amountOfElevatorPerColumn,servedFloors,false);//made some modifications to this
+                Column column = new Column(this.columnID,_amountOfFloors,_amountOfElevatorPerColumn,servedFloors,false);//made some modifications to this
                 this.columnsList.Add(column);
-                Global.columnID++;
+                this.columnID++;
             }
         }
         public void createFloorRequestButtons(int _amountOfFloors)
